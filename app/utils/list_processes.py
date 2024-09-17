@@ -16,7 +16,9 @@ def get_processes():
         if proc.name() == "node":
 
             connections = proc.connections(kind="inet")
-            ports = [conn.laddr.port for conn in connections]
+            for conn in connections:
+                print(conn.laddr.ip)
+            # ports = [conn.laddr.port for conn in connections]
 
             # print(ports)
             print(connections)

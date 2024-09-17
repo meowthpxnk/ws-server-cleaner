@@ -7,9 +7,10 @@ SETTINGS_PATH = "clicker_settings.yaml"
 
 class Settings:
     port: int
+    phone: str
 
     def __repr__(self) -> str:
-        return f"<ClSettings: port={self.port}>"
+        return f"<ClSettings: phone={self.phone} port={self.port}>"
 
 
 def parse_settings(settings_s):
@@ -18,6 +19,10 @@ def parse_settings(settings_s):
 
     s = Settings()
     whatsapp = settings.get("whatsapp")
+    common = settings.get("common")
+
+    if common:
+        s.phone = common.get("device_number")
 
     if whatsapp:
         s.port = whatsapp.get("port")

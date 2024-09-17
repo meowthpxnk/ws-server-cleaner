@@ -5,6 +5,10 @@ class Process:
     pid: int
     port: int
 
+    def __init__(self):
+        self.port = None
+        self.pid = None
+
     def __repr__(self) -> str:
         return f"<ClProcess: pid={self.pid}, port={self.port}>"
 

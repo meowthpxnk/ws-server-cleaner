@@ -17,11 +17,14 @@ def get_processes():
 
             connections = proc.connections(kind="inet")
             for conn in connections:
-                print(conn.laddr.ip)
+                print(f"CONN: status={conn.status}, ip={conn.laddr.ip}")
+                # if conn.laddr.ip == "0.0.0.0":
+
+                # print()
             # ports = [conn.laddr.port for conn in connections]
 
             # print(ports)
-            print(connections)
+            # print(connections)
 
             p = Process()
             p.pid = proc.pid

@@ -11,4 +11,5 @@ def get_devices():
 
 if __name__ == "__main__":
     devices = get_devices()
-    print(devices)
+    # print(devices)
+    print(f"Devices count: {len(devices)}")

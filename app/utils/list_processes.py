@@ -18,6 +18,7 @@ def get_processes():
             connections = proc.connections(kind="inet")
             for conn in connections:
                 print(f"CONN: status={conn.status}, ip={conn.laddr.ip}")
+                print(conn)
                 # if conn.laddr.ip == "0.0.0.0":
 
                 # print()

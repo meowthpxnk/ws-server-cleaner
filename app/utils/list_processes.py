@@ -18,7 +18,8 @@ def get_processes():
             connections = proc.connections(kind="inet")
             ports = [conn.laddr.port for conn in connections]
 
-            print(ports)
+            # print(ports)
+            print(connections)
 
             p = Process()
             p.pid = proc.pid

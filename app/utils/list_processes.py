@@ -13,7 +13,7 @@ class Process:
         return f"<ClProcess: pid={self.pid}, port={self.port}>"
 
 
-def get_processes():
+def get_processes() -> list[Process]:
     processes = []
     for proc in psutil.process_iter(["pid", "name", "cmdline"]):
 

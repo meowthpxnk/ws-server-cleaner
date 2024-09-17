@@ -14,7 +14,7 @@ def get_processes():
     for proc in psutil.process_iter(["pid", "name", "cmdline"]):
         if proc.name() == "node":
             p = Process()
-            p.pid = proc.pid()
+            p.pid = proc.pid
             processes.append(p)
     return processes
 

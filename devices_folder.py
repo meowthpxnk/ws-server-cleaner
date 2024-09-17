@@ -1,4 +1,5 @@
 import os
+import yaml
 
 ROOT_PATH = "/clicker/users"
 SETTINGS_PATH = "clicker_settings.yml"
@@ -10,7 +11,10 @@ def get_devices_folders():
     for device_name in device_names:
         settings_file = os.path.join(ROOT_PATH, device_name, SETTINGS_PATH)
 
-        print(settings_file)
+        with open(settings_file) as f:
+            s = f.read()
+            s = yaml.safe_load(s)
+            print(s)
 
 
 if __name__ == "__main__":

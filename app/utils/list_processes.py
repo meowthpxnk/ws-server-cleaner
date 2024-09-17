@@ -12,7 +12,10 @@ class Process:
 def get_processes():
     processes = []
     for proc in psutil.process_iter(["pid", "name", "cmdline"]):
-        print(proc.connections(kind="inet"))
+        connections = proc.connections(kind="inet")
+        ports = [conn.laddr.port for conn in connections]
+
+        print(ports)
         if proc.name() == "node":
             p = Process()
             p.pid = proc.pid

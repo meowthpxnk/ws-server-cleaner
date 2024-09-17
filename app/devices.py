@@ -6,7 +6,7 @@ def analyse_devices():
     processes = get_processes()
     # settings = get_devices_settings()
     print(processes)
-    # print(len(processes))
+    print(len(processes))
 
     # for p in processes:
     #     if not p.port:

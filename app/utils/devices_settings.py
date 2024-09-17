@@ -30,8 +30,10 @@ def parse_settings(settings_s):
     return s
 
 
-def get_devices_folders():
+def get_devices_settings():
     device_names = os.listdir(ROOT_PATH)
+
+    settings_list = []
 
     for device_name in device_names:
         settings_file = os.path.join(ROOT_PATH, device_name, SETTINGS_PATH)
@@ -39,8 +41,11 @@ def get_devices_folders():
         with open(settings_file) as f:
             settings_s = f.read()
             settings = parse_settings(settings_s)
-            print(settings)
+            # print(settings)
+            settings_list.append(settings)
+
+    return settings_list
 
 
 if __name__ == "__main__":
-    folders = get_devices_folders()
+    settings = get_devices_settings()

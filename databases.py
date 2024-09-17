@@ -1,20 +1,15 @@
 from pymongo import MongoClient
 
-# Подключитесь к вашему серверу MongoDB
+# Подключаемся к серверу MongoDB
 client = MongoClient("mongodb://localhost:27017/")  # Замените URL на ваш
 
-# Получите информацию о текущих операциях
-current_ops = client.admin.command("currentOp")
+# Получаем информацию о статусе сервера
+server_status = client.admin.command("serverStatus")
 
-# Выводим активные подключения
-active_connections = [
-    op for op in current_ops.get("inprog", []) if op.get("op") == "query"
-]
+# Извлекаем информацию о текущих подключениях
+connections = server_status.get("connections", {})
 
-for conn in active_connections:
-    print(f"Connection ID: {conn.get('opid')}")
-    print(f"Operation: {conn.get('op')}")
-    print(f"Namespace: {conn.get('ns')}")
-    print(f"Query: {conn.get('query')}")
-    print(f"Client: {conn.get('client')}")
-    print("-" * 40)
+# Выводим информацию о текущих подключениях
+print(f"Total Connections: {connections.get('current', 'N/A')}")
+print(f"Available Connections: {connections.get('available', 'N/A')}")
+print(f"Total Created Connections: {connections.get('totalCreated', 'N/A')}")

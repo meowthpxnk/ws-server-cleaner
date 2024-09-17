@@ -1,13 +1,18 @@
-from app.utils.list_processes import get_processes
-from app.utils.devices_settings import get_devices_settings
+from app.utils.list_processes import get_processes, Process
+from app.utils.devices_settings import get_devices_settings, Settings
 
 
-class Device: ...
+class Device:
+    process: Process
+    settings: Settings
+
+    def __repr__(self) -> str:
+        return f"<Device: settings={self.settings}, process={self.process}>"
 
 
 def analyse_devices():
-    processes = get_processes()
-    settings = get_devices_settings()
+    processes_list = get_processes()
+    settings_list = get_devices_settings()
     # print(processes)
     # print(len(processes))
 
@@ -16,5 +21,15 @@ def analyse_devices():
     #         print(p)
     # print(settings)
 
-    process_preparing = {process.port: process for process in processes}
-    print(process_preparing)
+    settings_prep = {settings.port: settings for settings in settings_list}
+    # print(process_preparing)
+
+    devices = []
+
+    for process in processes_list:
+        device = Device()
+        device.process = process
+        device.settings = settings_prep.get(process.port)
+        devices.append(device)
+
+    print(devices)

@@ -1,3 +1,5 @@
+from pymongo import MongoClient
+
 # Подключаемся к серверу MongoDB
 client = MongoClient("mongodb://localhost:27017/")  # Замените URL на ваш
 

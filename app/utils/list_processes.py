@@ -3,10 +3,10 @@ import psutil
 
 class Process:
     pid: int
-    # port: int
+    port: int
 
     def __repr__(self) -> str:
-        return f"<ClProcess: pid={self.pid}>"
+        return f"<ClProcess: pid={self.pid}, port={self.port}>"
 
 
 def get_processes():
@@ -14,20 +14,13 @@ def get_processes():
     for proc in psutil.process_iter(["pid", "name", "cmdline"]):
 
         if proc.name() == "node":
+            p = Process()
 
             connections = proc.connections(kind="inet")
             for conn in connections:
-                print(f"CONN: status={conn.status}, ip={conn.laddr.ip}")
-                print(conn)
-                # if conn.laddr.ip == "0.0.0.0":
+                if conn.status == "LISTEN":
+                    p.port = conn.laddr.port
 
-                # print()
-            # ports = [conn.laddr.port for conn in connections]
-
-            # print(ports)
-            # print(connections)
-
-            p = Process()
             p.pid = proc.pid
             processes.append(p)
     return processes

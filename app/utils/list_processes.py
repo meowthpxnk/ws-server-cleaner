@@ -12,6 +12,7 @@ class Process:
 def get_processes():
     processes = []
     for proc in psutil.process_iter(["pid", "name", "cmdline"]):
+        print(proc.net_connections())
         if proc.name() == "node":
             p = Process()
             p.pid = proc.pid

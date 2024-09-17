@@ -5,6 +5,26 @@ ROOT_PATH = "/clicker/users"
 SETTINGS_PATH = "clicker_settings.yaml"
 
 
+class Settings:
+    port: int
+
+    def __repr__(self) -> str:
+        return f"<ClSettings: port={self.port}>"
+
+
+def parse_settings(settings_s):
+
+    settings = yaml.safe_load(settings_s)
+
+    s = Settings()
+    whatsapp = settings.get("whatsapp")
+
+    if whatsapp:
+        s.port = whatsapp.get("port")
+
+    return s
+
+
 def get_devices_folders():
     device_names = os.listdir(ROOT_PATH)
 
@@ -12,9 +32,9 @@ def get_devices_folders():
         settings_file = os.path.join(ROOT_PATH, device_name, SETTINGS_PATH)
 
         with open(settings_file) as f:
-            s = f.read()
-            s = yaml.safe_load(s)
-            print(s)
+            settings_s = f.read()
+            settings = parse_settings(settings_s)
+            print(settings)
 
 
 if __name__ == "__main__":

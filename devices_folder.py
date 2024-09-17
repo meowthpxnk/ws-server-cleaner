@@ -2,7 +2,7 @@ import os
 import yaml
 
 ROOT_PATH = "/clicker/users"
-SETTINGS_PATH = "clicker_settings.yml"
+SETTINGS_PATH = "clicker_settings.yaml"
 
 
 def get_devices_folders():

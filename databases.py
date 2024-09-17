@@ -16,15 +16,17 @@ for op in operations:
     ns = op.get("ns", "N/A")
     query = op.get("query", "N/A")
     client_info = op.get("client", "N/A")
-    # Также можно попытаться извлечь информацию о драйверах
-    driver_info = op.get(
-        "desc", "N/A"
-    )  # Описание может включать информацию о драйвере
+
+    # Извлекаем clientMetadata
+    client_metadata = op.get("clientMetadata", {})
+    driver_name = client_metadata.get("driver", {}).get("name", "N/A")
+    driver_version = client_metadata.get("driver", {}).get("version", "N/A")
 
     print(f"Operation ID: {opid}")
     print(f"Operation Type: {op_type}")
     print(f"Namespace: {ns}")
     print(f"Query: {query}")
     print(f"Client: {client_info}")
-    print(f"Driver Info: {driver_info}")
+    print(f"Driver Name: {driver_name}")
+    print(f"Driver Version: {driver_version}")
     print("-" * 40)

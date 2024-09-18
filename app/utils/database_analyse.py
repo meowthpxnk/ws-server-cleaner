@@ -86,8 +86,6 @@ def get_db(phone, cl=None):
 def clear_in_messages(db):
     query = get_in_messages_query()
 
-    print("Clear in messages start")
-    db[DB_IN].delete_many(query)
     print("Clear in messages end")
 
 
@@ -95,17 +93,9 @@ def clear_out_messages(db):
     jid_list = get_active_jid_list(db)
     query = get_jids_for_delete_query(jid_list)
 
-    print("Clear contacts start")
     db[DB_CONT].delete_many(query)
-    print("Clear contacts end")
-
-    print("Clear read messages start")
     db[DB_READ].delete_many(query)
-    print("Clear read messages end")
-
-    print("Clear sent messages start")
     db[DB_SEND].delete_many(query)
-    print("Clear sent messages end")
 
 
 def clear_db(phone, cl=None):
@@ -185,7 +175,7 @@ class DBAnalyse:
         )
 
     def __repr__(self) -> str:
-        return f"<DBAnalyse: phone={self.phone}\n\tContacts: {self.contacts_count}\n\tSent: {self.sent_count}\n\tRead: {self.read_count}\n\tIn: {self.in_count}\n\t$empty: {self.is_empty}\n>"
+        return f"<DBAnalyse: phone={self.phone} Contacts: {self.contacts_count} Sent: {self.sent_count} Read: {self.read_count} In: {self.in_count} $empty: {self.is_empty}\n>"
 
 
 def analyse_db(phone, count_cols=True, cl=None):

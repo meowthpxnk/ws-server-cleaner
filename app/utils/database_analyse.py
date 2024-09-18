@@ -71,10 +71,10 @@ def analyse_db(phone):
         query = {
             "$or": [
                 {
-                    "messageTimestamp": {"$gte": delta}
+                    "messageTimestamp": {"$lt": delta}
                 },  # Фильтрация по timestamp
                 {
-                    "messageTimestamp.low": {"$gte": delta},
+                    "messageTimestamp.low": {"$lt": delta},
                 },  # Фильтрация по словарю
             ]
         }

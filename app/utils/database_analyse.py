@@ -61,7 +61,7 @@ def get_delta_timestamp_days(days=1, type_dt=False):
     return int(delta.timestamp())
 
 
-def get_query():
+def get_in_messages_query():
     delta = get_delta_timestamp_days()
     query = {
         "$or": [
@@ -82,10 +82,9 @@ def get_db(phone):
 
 
 def clear_in_messages(db):
-    in_messages = db[DB_IN](db)
-    query = get_query()
+    query = get_in_messages_query()
 
-    in_messages.delete_many(query)
+    db[DB_IN].delete_many(query)
 
 
 def clear_out_messages(db):

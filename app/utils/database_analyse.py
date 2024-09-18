@@ -37,7 +37,7 @@ def analyse_db(phone):
         # print(len(list(records)))
 
         for rec in records:
-            print(rec)
+            print(rec["messageTimestamp"])
 
     # print(db.list_collection_names())
 

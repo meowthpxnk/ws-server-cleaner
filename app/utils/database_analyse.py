@@ -71,18 +71,18 @@ def analyse_db(phone):
         query = {
             "$or": [
                 {
-                    "messageTimestamp": {"$gte": delta}
+                    "messageTimestamp": {"$lt": delta}
                 },  # Фильтрация по timestamp
                 {
-                    "messageTimestamp.low": {"$gte": delta},
+                    "messageTimestamp.low": {"$lt": delta},
                 },  # Фильтрация по словарю
             ]
         }
 
         q = coll.find(query)
-        # print(len(list(q)))
+        print(len(list(q)))
 
-        for rec in q:
+        for rec in coll.find(query):
             ts = rec["messageTimestamp"]
             # print(rec)
             ts = Timestapm(ts)

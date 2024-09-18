@@ -65,7 +65,14 @@ def analyse_db(phone):
 
         # print(coll.__dir__())
 
-        for rec in coll.find():
+        query = {
+            "$or": [
+                {"messageTimestamp": {"$gte": delta}},
+                {"messageTimestamp.low": {"$gte": delta}},
+            ]
+        }
+
+        for rec in coll.find(query):
             ts = rec["messageTimestamp"]
             print(rec)
             ts = Timestapm(ts)

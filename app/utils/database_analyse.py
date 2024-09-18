@@ -84,16 +84,26 @@ def get_db(phone):
 def clear_in_messages(db):
     query = get_in_messages_query()
 
+    print("Clear in messages start")
     db[DB_IN].delete_many(query)
+    print("Clear in messages end")
 
 
 def clear_out_messages(db):
     jid_list = get_active_jid_list(db)
     query = get_jids_for_delete_query(jid_list)
 
-    c = db[DB_READ].delete_many(query)
-    c = db[DB_CONT].delete_many(query)
-    c = db[DB_SEND].delete_many(query)
+    print("Clear contacts start")
+    db[DB_CONT].delete_many(query)
+    print("Clear contacts end")
+
+    print("Clear read messages start")
+    db[DB_READ].delete_many(query)
+    print("Clear read messages end")
+
+    print("Clear sent messages start")
+    db[DB_SEND].delete_many(query)
+    print("Clear sent messages end")
 
 
 def clear_db(phone):
@@ -164,5 +174,5 @@ def analyse_db(phone, count_cols=True):
 
 if __name__ == "__main__":
     phone = "994512306000"
-    clear_db(phone)
+    # clear_db(phone)
     analyse_db(phone, count_cols=True)

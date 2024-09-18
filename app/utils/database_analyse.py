@@ -83,14 +83,26 @@ def clear_db(phone):
 def analyse_db(phone):
     db = get_db(phone)
 
-    print(f"Analyse database for phone: {phone}")
+    print(f"-" * 20 + " Analyse db phone: {phone}" + "-" * 20)
 
+    # print(f"Analyse database for phone: {phone}")
+
+    print("-" * 40)
     for coll_name in DB_COLLECTIONS:
 
         coll = db[coll_name]
 
         records = coll.find()
         print(f"Coll - {coll_name} count {len(list(records))}")
+
+    print()
+
+    # contacts analytic
+    c = db[DB_CONT]
+    cursor = c.find()
+    print(c[0])
+
+    print("-" * 40)
 
 
 if __name__ == "__main__":

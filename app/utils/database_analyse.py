@@ -8,7 +8,7 @@ def analyse_db(phone):
     db_name = DB_NAME.format(phone=phone)
     db = cl[db_name]
 
-    print(db.__dir__())
+    print(db.list_collection_names())
 
 
 if __name__ == "__main__":

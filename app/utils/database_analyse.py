@@ -110,10 +110,12 @@ def analyse_db(phone):
     # contacts analytic
     c = db[DB_READ]
     cursor = c.find()
-    print(cursor[0])
-    print(cursor[1])
-    print(cursor[2])
-    print(cursor[3])
+    # print(cursor[0])
+    # print(cursor[1])
+    # print(cursor[2])
+    # print(cursor[3])
+    for r in cursor:
+        print(r)
 
     print("-" * 40)
 

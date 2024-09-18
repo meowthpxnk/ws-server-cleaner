@@ -165,5 +165,5 @@ def analyse_db(phone, count_cols=True):
 
 if __name__ == "__main__":
     phone = "74952121883"
+    clear_db(phone)
     analyse_db(phone, count_cols=True)
-    # clear_db(phone)

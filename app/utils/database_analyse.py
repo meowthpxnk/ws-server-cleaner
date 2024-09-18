@@ -53,8 +53,13 @@ class Timestapm:
         return f"<Timestamp: dt={self.dt}>"
 
 
-def get_delta_timestamp():
-    delta = datetime.now() - timedelta(days=1)
+# def get_delta_timestamp():
+#     delta = datetime.now() - timedelta(days=1)
+#     return int(delta.timestamp())
+
+
+def get_delta_timestamp_days(days=1):
+    delta = datetime.now() - timedelta(days=days)
     return int(delta.timestamp())
 
 
@@ -63,7 +68,7 @@ def get_in_messages_collection(db):
 
 
 def get_query():
-    delta = get_delta_timestamp()
+    delta = get_delta_timestamp_days()
     query = {
         "$or": [
             {"messageTimestamp": {"$lt": delta}},  # Фильтрация по timestamp
@@ -90,6 +95,19 @@ def clear_db(phone):
     in_messages.delete_many(query)
 
 
+def get_last_messages_query():
+    delta = get_delta_timestamp_days(14)
+    return {"updated": {"$lt": delta}}
+
+
+def get_last_sent_messages(db):
+    return db[DB_SEND].find(get_last_messages_query())
+
+
+def get_last_read_messages(db):
+    return db[DB_READ].find(get_last_messages_query())
+
+
 def analyse_db(phone):
     db = get_db(phone)
 
@@ -107,21 +125,23 @@ def analyse_db(phone):
 
     print()
 
-    # contacts analytic
+    # send messages analytic
     c = db[DB_SEND]
     cursor = c.find()
+    print(len(list(cursor.find())))
+    print(len(list(get_last_sent_messages)))
     # print(cursor[0])
     # print(cursor[1])
     # print(cursor[2])
     # print(cursor[3])
-    jids = []
-    for r in cursor:
-        if r["jid"] not in jids:
-            jids.append(r["jid"])
-        # print(r)
+    # jids = []
+    # for r in cursor:
+    #     if r["jid"] not in jids:
+    #         jids.append(r["jid"])
+    #     # print(r)
 
-    print(len(list(c.find())))
-    print(len(jids))
+    # print(len(list(c.find())))
+    # print(len(jids))
 
     print("-" * 40)
 

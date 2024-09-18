@@ -49,7 +49,7 @@ def analyse_db(phone):
     db = cl[db_name]
 
     delta = datetime.now() - timedelta(days=1)
-    delta = int(delta)
+    delta = int(delta.timestamp())
 
     # print("-" * 40)
     print(f"ANALYSE FOR DB {db_name}")

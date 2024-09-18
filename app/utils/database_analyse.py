@@ -65,11 +65,10 @@ def analyse_db(phone):
 
         # print(coll.__dir__())
 
-        for rec in coll.find():
-            ts = rec["messageTimestamp"]
-            ts = Timestapm(ts)
-            print(ts)
-            # print()
+        # for rec in coll.find():
+        #     ts = rec["messageTimestamp"]
+        #     ts = Timestapm(ts)
+        #     print(ts)
 
     print("-" * 40)
 

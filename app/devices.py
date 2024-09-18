@@ -13,6 +13,7 @@ class Device:
 
 def analyse_devices():
     processes_list = get_processes()
+    print(processes_list)
     settings_list = get_devices_settings()
     # print(processes)
     # print(len(processes))

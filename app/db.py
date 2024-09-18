@@ -13,6 +13,7 @@ def clear_all_dbs():
     cl = MongoClient()
 
     databases = cl.list_database_names()
+    print(databases[0])
 
     print(get_phone_from_db_name(databases[0]))
 

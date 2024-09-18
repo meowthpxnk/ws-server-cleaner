@@ -10,6 +10,9 @@ class Device:
         return f"<Device: settings={self.settings}, process={self.process}>"
 
 
+#
+
+
 def analyse_devices():
     processes_list = get_processes()
     settings_list = get_devices_settings()

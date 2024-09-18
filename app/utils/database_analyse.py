@@ -1,4 +1,6 @@
 from pymongo import MongoClient
+from datetime import datetime
+
 
 DB_NAME = "WA_MD_{phone}_1"
 
@@ -22,6 +24,25 @@ DB_COLLECTIONS = [
 ]
 
 
+class Timestapm:
+    dt: datetime
+
+    def __init__(self, timestamp):
+        if isinstance(timestamp, int):
+            pass
+        elif isinstance(timestamp, dict):
+            timestamp = timestamp.get("low")
+            if not timestamp:
+                raise ValueError("Not valid timestamp dict")
+        else:
+            raise TypeError("Timestamp must be int or dict")
+
+        self.dt = datetime.fromtimestamp(timestamp)
+
+    def __repr__(self) -> str:
+        return f"<Timestamp: dt={self.dt}>"
+
+
 def analyse_db(phone):
     cl = MongoClient()
     db_name = DB_NAME.format(phone=phone)
@@ -37,7 +58,10 @@ def analyse_db(phone):
         # print(len(list(records)))
 
         for rec in records:
-            print(rec["messageTimestamp"])
+            ts = rec["messageTimestamp"]
+            ts = Timestapm(ts)
+            print(ts)
+            # print()
 
     # print(db.list_collection_names())
 

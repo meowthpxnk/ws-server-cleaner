@@ -20,8 +20,7 @@ def drop_inactive_dbs():
         analyse = analyse_db(phone, cl=cl)
 
         if analyse.is_empty:
-            print(cl.__dir__())
-        print(analyse)
+            cl.drop_database(db_name)
 
 
 def clear_all_dbs():

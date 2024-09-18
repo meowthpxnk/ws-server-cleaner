@@ -10,8 +10,9 @@ def analyse_dbs():
 
     phone = "12059906323"
 
-    clear_db(phone)
+    # clear_db(phone)
 
     analyse = analyse_db(phone)
-    print(analyse.is_empty())
+    print(analyse)
+    print(analyse.is_empty)
     ...

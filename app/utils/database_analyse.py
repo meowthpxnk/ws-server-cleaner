@@ -12,4 +12,4 @@ def analyse_db(phone):
 
 
 if __name__ == "__main__":
-    analyse_db("7999")
+    analyse_db("79014355936")

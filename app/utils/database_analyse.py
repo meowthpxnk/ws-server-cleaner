@@ -109,6 +109,7 @@ def clear_out_messages(db):
 
 
 def clear_db(phone, cl=None):
+    print(f"Start clearing database {phone}")
     db = get_db(phone, cl)
 
     clear_in_messages(db)
@@ -187,8 +188,8 @@ class DBAnalyse:
         return f"<DBAnalyse: phone={self.phone}\n\tContacts: {self.contacts_count}\n\tSent: {self.sent_count}\n\tRead: {self.read_count}\n\tIn: {self.in_count}\n\t$empty: {self.is_empty}\n>"
 
 
-def analyse_db(phone, count_cols=True):
-    db = get_db(phone)
+def analyse_db(phone, count_cols=True, cl=None):
+    db = get_db(phone, cl)
 
     analyse = DBAnalyse()
     analyse.phone = phone

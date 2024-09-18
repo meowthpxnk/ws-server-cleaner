@@ -9,13 +9,28 @@ def get_phone_from_db_name(db_name):
     return db_name
 
 
+# def drop_inactive_dbs():
+#     cl = MongoClient()
+#     databases = cl.list_database_names()
+
+#     for db in databases:
+#         phone = get_phone_from_db_name(databases[0])
+#         analyse = analyse_db(phone)
+#         if analyse.is_empty:
+#             cl
+
+
+#     ...
+
+
 def clear_all_dbs():
     cl = MongoClient()
 
     databases = cl.list_database_names()
-    print(databases[0])
 
-    print(get_phone_from_db_name(databases[0]))
+    for db_name in databases:
+        phone = get_phone_from_db_name(db_name)
+        clear_db(phone)
 
 
 def analyse_dbs():

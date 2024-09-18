@@ -76,7 +76,7 @@ def clear_db(phone):
     db = get_db(phone)
     in_messages = get_in_messages_collection(db)
 
-    print(len(list(in_messages.find)))
+    print(len(list(in_messages.find())))
 
 
 def analyse_db(phone):

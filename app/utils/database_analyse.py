@@ -119,6 +119,7 @@ def get_active_jits(db):
     active_jits = []
 
     for m in sent:
+        print(m)
         jit = m["jit"]
         if jit not in active_jits:
             active_jits.append(jit)

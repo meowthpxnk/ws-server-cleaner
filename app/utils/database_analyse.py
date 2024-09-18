@@ -65,7 +65,7 @@ def analyse_db(phone):
 
         # print(coll.__dir__())
 
-        for rec in coll.find({"messageTimestamp": {"$lt": delta}}):
+        for rec in coll.find():
             ts = rec["messageTimestamp"]
             print(rec)
             ts = Timestapm(ts)

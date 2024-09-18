@@ -8,11 +8,10 @@ def analyse_dbs():
 
     # print(cl.list_database_names())
 
-    phone = "12059906323"
+    phone = "13392177155"
 
     # clear_db(phone)
 
     analyse = analyse_db(phone)
     print(analyse)
-    print(analyse.is_empty)
     ...

@@ -97,4 +97,4 @@ if __name__ == "__main__":
     phone = "79251396383"
     analyse_db(phone)
 
-    clear_db(phone)
+    # clear_db(phone)

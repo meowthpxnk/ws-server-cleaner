@@ -119,7 +119,6 @@ def get_active_jids(db):
     active_jids = []
 
     for m in sent:
-        print(m)
         jid = m["jid"]
         if jid not in active_jids:
             active_jids.append(jid)

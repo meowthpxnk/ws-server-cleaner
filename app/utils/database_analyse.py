@@ -108,7 +108,7 @@ def analyse_db(phone):
     print()
 
     # contacts analytic
-    c = db[DB_READ]
+    c = db[DB_SEND]
     cursor = c.find()
     # print(cursor[0])
     # print(cursor[1])

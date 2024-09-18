@@ -31,6 +31,7 @@ def drop_inactive_dbs():
             continue
         phone = get_phone_from_db_name(db_name)
         analyse = analyse_db(phone, cl=cl)
+        print(f"------ DATABASE ANALYSE: Name={db_name} ------")
         print(analyse)
 
         if analyse.is_empty:

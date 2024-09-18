@@ -100,7 +100,7 @@ def clear_db(phone):
 
 def get_last_messages_query():
     delta = get_delta_timestamp_days(14, type_dt=True)
-    return {"updated": {"$lt": delta}}
+    return {"updated": {"$gte": delta}}
 
 
 def get_last_sent_messages(db):

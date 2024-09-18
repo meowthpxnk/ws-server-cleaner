@@ -77,9 +77,9 @@ def clear_db(phone):
     in_messages = get_in_messages_collection(db)
     query = get_query()
 
-    in_messages.delete_many(query)
+    # in_messages.delete_many(query)
 
-    print(len(list(in_messages.find(query))))
+    # print(len(list(in_messages.find(query))))
 
 
 def analyse_db(phone):

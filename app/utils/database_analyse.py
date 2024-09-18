@@ -182,7 +182,7 @@ class DBAnalyse:
         )
 
     def __repr__(self) -> str:
-        return f"<DBAnalyse: phone={self.phone}\n\tContacts: {self.contacts_count}\n\tSent: {self.sent_count}\n\tRead: {self.read_count}\n\tIn: {self.in_count}\n$empty: {self.is_empty}\n>"
+        return f"<DBAnalyse: phone={self.phone}\n\tContacts: {self.contacts_count}\n\tSent: {self.sent_count}\n\tRead: {self.read_count}\n\tIn: {self.in_count}\n\t$empty: {self.is_empty}\n>"
 
 
 def analyse_db(phone, count_cols=True):

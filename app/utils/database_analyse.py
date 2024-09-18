@@ -58,7 +58,7 @@ def analyse_db(phone):
         records = coll.find()
         print(f"Coll - {coll_name} count {len(list(records))}")
 
-        if coll is not DB_IN:
+        if coll_name is not DB_IN:
             continue
 
         # print(coll.__dir__())

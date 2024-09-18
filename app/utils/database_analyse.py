@@ -85,8 +85,7 @@ def get_db(phone, cl=None):
 
 def clear_in_messages(db):
     query = get_in_messages_query()
-
-    print("Clear in messages end")
+    db[DB_IN].delete_many(query)
 
 
 def clear_out_messages(db):

@@ -30,7 +30,11 @@ def analyse_db(phone):
     for coll in DB_COLLECTIONS:
         coll = db[coll]
 
-        print(coll.__dir__())
+        # print(coll.__dir__())
+
+        records = coll.find()
+
+        print(records)
 
     # print(db.list_collection_names())
 

@@ -23,6 +23,9 @@ def get_processes():
             connections = proc.connections(kind="inet")
             for conn in connections:
                 if conn.status == "LISTEN":
+
+                    if not conn.laddr.port:
+                        continue
                     p.port = conn.laddr.port
 
             p.pid = proc.pid

@@ -158,7 +158,7 @@ def analyse_db(phone, count_cols=True):
 
     jid_list = get_active_jid_list(db)
 
-    c = db[DB_CONT].find(get_jids_for_delete_query(jid_list))
+    c = db[DB_READ].find(get_jids_for_delete_query(jid_list))
     print(len(list(c)))
     # print(len(jid_list))
     # print(cursor[0])

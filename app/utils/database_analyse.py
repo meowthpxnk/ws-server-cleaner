@@ -152,24 +152,51 @@ def print_coll_counts(db):
 
         coll = db[coll_name]
 
-        records = coll.find()
-        print(f"Coll - {coll_name} count {len(list(records))}")
+        print(f"Coll - {coll_name} count {cont_collection(coll)}")
     print("-" * 20)
+
+
+def cont_collection(collection):
+    return len(list(collection.find()))
 
 
 def get_jids_for_delete_query(jid_list):
     return {"jid": {"$nin": jid_list}}
 
 
+class DBAnalyse:
+    phone: str
+
+    contacts_count: int
+    sent_count: int
+    read_count: int
+    in_count: int
+
+    @property
+    def is_empty(self):
+        return bool(
+            self.contacts_count
+            and self.sent_count
+            and self.read_count
+            and self.in_count
+        )
+
+    def __repr__(self) -> str:
+        return f"<DBAnalyse: phone={self.phone}\n\tContacts: {self.contacts_count}\n\tSent: {self.sent_count}\n\tRead: {self.read_count}\n\tIn: {self.in_count}>"
+
+
 def analyse_db(phone, count_cols=True):
     db = get_db(phone)
 
-    print(f"-" * 20 + f" Analyse db phone: {phone}" + "-" * 20)
+    analyse = DBAnalyse()
+    analyse.phone = phone
 
-    if count_cols:
-        print_coll_counts(db)
+    analyse.contacts_count = cont_collection(db[DB_CONT])
+    analyse.sent_count = cont_collection(db[DB_SEND])
+    analyse.read_count = cont_collection(db[DB_READ])
+    analyse.in_count = cont_collection(db[DB_IN])
 
-    print("-" * 40)
+    return analyse
 
 
 if __name__ == "__main__":

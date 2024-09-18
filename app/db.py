@@ -12,5 +12,6 @@ def analyse_dbs():
 
     clear_db(phone)
 
-    analyse_db(phone)
+    analyse = analyse_db(phone)
+    print(analyse)
     ...

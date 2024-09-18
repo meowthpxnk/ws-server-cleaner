@@ -58,8 +58,11 @@ class Timestapm:
 #     return int(delta.timestamp())
 
 
-def get_delta_timestamp_days(days=1):
+def get_delta_timestamp_days(days=1, datetime=False):
     delta = datetime.now() - timedelta(days=days)
+
+    if datetime:
+        return delta
     return int(delta.timestamp())
 
 
@@ -96,7 +99,7 @@ def clear_db(phone):
 
 
 def get_last_messages_query():
-    delta = get_delta_timestamp_days(14)
+    delta = get_delta_timestamp_days(14, datetime=True)
     return {"updated": {"$lt": delta}}
 
 

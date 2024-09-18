@@ -49,6 +49,7 @@ def analyse_db(phone):
     db = cl[db_name]
 
     delta = datetime.now() - timedelta(days=1)
+    delta = int(delta)
 
     # print("-" * 40)
     print(f"ANALYSE FOR DB {db_name}")
@@ -64,6 +65,8 @@ def analyse_db(phone):
             continue
 
         # print(coll.__dir__())
+
+        print(f"Delta: {delta}")
 
         query = {
             "$or": [

@@ -24,9 +24,9 @@ def get_processes():
             for conn in connections:
                 if conn.status == "LISTEN":
 
-                    if not conn.laddr.port:
-                        continue
                     p.port = conn.laddr.port
+            if not p.port:
+                continue
 
             p.pid = proc.pid
             processes.append(p)

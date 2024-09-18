@@ -127,6 +127,6 @@ def analyse_db(phone):
 
 
 if __name__ == "__main__":
-    phone = "79251396383"
+    phone = "994512306000"
     # clear_db(phone)
     analyse_db(phone)

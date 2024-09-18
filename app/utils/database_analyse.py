@@ -77,7 +77,10 @@ def analyse_db(phone):
             ]
         }
 
-        for rec in coll.find(query):
+        q = coll.find(query)
+        print(len(list(q)))
+
+        for rec in q:
             ts = rec["messageTimestamp"]
             print(rec)
             ts = Timestapm(ts)

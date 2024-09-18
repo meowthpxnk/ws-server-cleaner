@@ -129,7 +129,7 @@ def analyse_db(phone):
     c = db[DB_SEND]
     cursor = c.find()
     print(len(list(cursor)))
-    print(len(list(get_last_sent_messages)))
+    print(len(list(get_last_sent_messages())))
     # print(cursor[0])
     # print(cursor[1])
     # print(cursor[2])

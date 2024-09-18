@@ -86,7 +86,7 @@ def analyse_db(phone):
 
         for rec in q:
             ts = rec["messageTimestamp"]
-            # print(rec)
+            print(rec)
             ts = Timestapm(ts)
             timestamps.append(ts)
             # print(ts)

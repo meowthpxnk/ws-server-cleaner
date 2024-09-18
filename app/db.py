@@ -14,7 +14,9 @@ def get_phone_from_db_name(db_name):
 def get_db_phones():
     cl = MongoClient()
     databases = cl.list_database_names()
-    for i in databases:
+    for db_name in databases:
+        if db_name in LOCAL_DBS:
+            continue
         print(f"DB {i}")
     ...
 

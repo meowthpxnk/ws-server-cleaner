@@ -153,7 +153,7 @@ def analyse_db(phone, count_cols=True):
     # print(len(list(get_last_read_messages(db))))
 
     jids = get_active_jids(db)
-    print(jids)
+    print(len(jids))
     # print(cursor[0])
     # print(cursor[1])
     # print(cursor[2])

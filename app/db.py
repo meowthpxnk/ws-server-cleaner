@@ -18,10 +18,12 @@ def drop_inactive_dbs():
     for db_name in databases:
         phone = get_phone_from_db_name(db_name)
         analyse = analyse_db(phone, cl=cl)
+        print(analyse)
 
         if analyse.is_empty:
+            if db_name in LOCAL_DBS:
+                continue
             print(f"DB dropped {db_name}")
-            print(analyse)
             cl.drop_database(db_name)
 
 

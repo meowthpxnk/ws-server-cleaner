@@ -20,7 +20,7 @@ def drop_inactive_dbs():
         analyse = analyse_db(phone, cl=cl)
 
         if analyse.is_empty:
-            print(cl[db_name].__dir__())
+            print(cl.__dir__())
         print(analyse)
 
 

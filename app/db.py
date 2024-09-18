@@ -30,7 +30,8 @@ def clear_all_dbs():
 
     for db_name in databases:
         phone = get_phone_from_db_name(db_name)
-        clear_db(phone)
+        print(phone)
+        # clear_db(phone)
 
 
 def analyse_dbs():

@@ -84,7 +84,7 @@ def analyse_db(phone):
             ts = rec["messageTimestamp"]
             ts = Timestapm(ts)
             print(ts)
-            break
+            # break
 
     print("-" * 40)
 

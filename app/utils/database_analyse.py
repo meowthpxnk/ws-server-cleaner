@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 DB_NAME = "WA_MD_{phone}_1"
@@ -48,6 +48,8 @@ def analyse_db(phone):
     db_name = DB_NAME.format(phone=phone)
     db = cl[db_name]
 
+    three_days_ago = datetime.now() - timedelta(days=3)
+
     # print("-" * 40)
     print(f"ANALYSE FOR DB {db_name}")
 
@@ -63,7 +65,22 @@ def analyse_db(phone):
 
         # print(coll.__dir__())
 
-        for rec in coll.find():
+        for rec in coll.find(
+            {
+                "$expr": {
+                    "$lt": [
+                        {
+                            "$dateFromParts": {
+                                "year": {"$year": "$timestamp"},
+                                "month": {"$month": "$timestamp"},
+                                "day": {"$dayOfMonth": "$timestamp"},
+                            }
+                        },
+                        three_days_ago,
+                    ]
+                }
+            }
+        ):
             ts = rec["messageTimestamp"]
             ts = Timestapm(ts)
             print(ts)
@@ -75,4 +92,4 @@ def analyse_db(phone):
 
 
 if __name__ == "__main__":
-    analyse_db("79062384423")
+    analyse_db("79014355936")

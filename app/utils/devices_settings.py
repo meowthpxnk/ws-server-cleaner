@@ -30,8 +30,12 @@ def parse_settings(settings_s):
     return s
 
 
+def get_devices_folders():
+    return os.listdir(ROOT_PATH)
+
+
 def get_devices_settings():
-    device_names = os.listdir(ROOT_PATH)
+    device_names = get_devices_folders()
 
     settings_list = []
 

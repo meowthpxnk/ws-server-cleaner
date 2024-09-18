@@ -21,7 +21,7 @@ def get_db_phones():
             continue
         phones.append(get_phone_from_db_name(db_name))
 
-    print(phones)
+    return phones
 
 
 def drop_inactive_dbs():

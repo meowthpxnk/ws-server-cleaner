@@ -20,6 +20,8 @@ def drop_inactive_dbs():
         analyse = analyse_db(phone, cl=cl)
 
         if analyse.is_empty:
+            print(f"DB dropped {db_name}")
+            print(analyse)
             cl.drop_database(db_name)
 
 

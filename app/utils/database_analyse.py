@@ -53,21 +53,12 @@ class Timestapm:
         return f"<Timestamp: dt={self.dt}>"
 
 
-# def get_delta_timestamp():
-#     delta = datetime.now() - timedelta(days=1)
-#     return int(delta.timestamp())
-
-
 def get_delta_timestamp_days(days=1, type_dt=False):
     delta = datetime.now() - timedelta(days=days)
 
     if type_dt:
         return delta
     return int(delta.timestamp())
-
-
-def get_in_messages_collection(db):
-    return db[DB_IN]
 
 
 def get_query():
@@ -90,12 +81,27 @@ def get_db(phone):
     return db
 
 
-def clear_db(phone):
-    db = get_db(phone)
-    in_messages = get_in_messages_collection(db)
+def clear_in_messages(db):
+    in_messages = db[DB_IN](db)
     query = get_query()
 
     in_messages.delete_many(query)
+
+
+def clear_out_messages(db):
+    jid_list = get_active_jid_list(db)
+    query = get_jids_for_delete_query(jid_list)
+
+    c = db[DB_READ].delete_many(query)
+    c = db[DB_CONT].delete_many(query)
+    c = db[DB_SEND].delete_many(query)
+
+
+def clear_db(phone):
+    db = get_db(phone)
+
+    clear_in_messages(db)
+    clear_out_messages(db)
 
 
 def get_last_messages_query():
@@ -154,34 +160,10 @@ def analyse_db(phone, count_cols=True):
     if count_cols:
         print_coll_counts(db)
 
-    # print(len(list(get_last_read_messages(db))))
-
-    jid_list = get_active_jid_list(db)
-
-    c = db[DB_READ].find(get_jids_for_delete_query(jid_list))
-    print(len(list(c)))
-    c = db[DB_CONT].find(get_jids_for_delete_query(jid_list))
-    print(len(list(c)))
-    c = db[DB_SEND].find(get_jids_for_delete_query(jid_list))
-    print(len(list(c)))
-    # print(len(jid_list))
-    # print(cursor[0])
-    # print(cursor[1])
-    # print(cursor[2])
-    # print(cursor[3])
-    # jids = []
-    # for r in cursor:
-    #     if r["jid"] not in jids:
-    #         jids.append(r["jid"])
-    #     # print(r)
-
-    # print(len(list(c.find())))
-    # print(len(jids))
-
     print("-" * 40)
 
 
 if __name__ == "__main__":
-    phone = "994512306000"
-    # clear_db(phone)
+    phone = "74952121883"
     analyse_db(phone, count_cols=True)
+    # clear_db(phone)

@@ -11,6 +11,14 @@ def get_phone_from_db_name(db_name):
     return db_name
 
 
+def get_db_phones():
+    cl = MongoClient()
+    databases = cl.list_database_names()
+    for i in databases:
+        print(f"DB {i}")
+    ...
+
+
 def drop_inactive_dbs():
     cl = MongoClient()
     databases = cl.list_database_names()

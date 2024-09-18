@@ -13,5 +13,5 @@ def analyse_dbs():
     clear_db(phone)
 
     analyse = analyse_db(phone)
-    print(analyse)
+    print(analyse.is_empty())
     ...

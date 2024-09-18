@@ -75,7 +75,6 @@ def analyse_db(phone):
                 },  # Фильтрация по timestamp
                 {
                     "messageTimestamp.low": {"$gte": delta},
-                    "messageTimestamp.unsigned": True,
                 },  # Фильтрация по словарю
             ]
         }

@@ -74,8 +74,10 @@ def get_in_messages_query():
     return query
 
 
-def get_db(phone):
-    cl = MongoClient()
+def get_db(phone, cl=None):
+    if not cl:
+        cl = MongoClient()
+
     db_name = DB_NAME.format(phone=phone)
     db = cl[db_name]
     return db
@@ -106,8 +108,8 @@ def clear_out_messages(db):
     print("Clear sent messages end")
 
 
-def clear_db(phone):
-    db = get_db(phone)
+def clear_db(phone, cl=None):
+    db = get_db(phone, cl)
 
     clear_in_messages(db)
     clear_out_messages(db)

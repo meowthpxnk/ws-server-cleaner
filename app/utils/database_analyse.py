@@ -114,8 +114,14 @@ def analyse_db(phone):
     # print(cursor[1])
     # print(cursor[2])
     # print(cursor[3])
+    jids = []
     for r in cursor:
-        print(r)
+        if r["jid"] not in jids:
+            jids.append(r["jid"])
+        # print(r)
+
+    print(len(list(c.find())))
+    print(len(jids))
 
     print("-" * 40)
 

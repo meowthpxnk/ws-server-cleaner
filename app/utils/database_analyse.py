@@ -111,6 +111,30 @@ def get_last_read_messages(db):
     return db[DB_READ].find(get_last_messages_query())
 
 
+def get_active_jits(db):
+
+    sent = get_last_sent_messages(db)
+    read = get_last_read_messages(db)
+
+    active_jits = []
+
+    for m in sent:
+        jit = m["jit"]
+        if jit not in active_jits:
+            active_jits.append(jit)
+
+    for m in read:
+        jit = m["jit"]
+        if jit not in active_jits:
+            active_jits.append(jit)
+
+    return active_jits
+
+    # upd.update({
+    #     sent["jid"]:
+    # })
+
+
 def analyse_db(phone):
     db = get_db(phone)
 
@@ -136,8 +160,11 @@ def analyse_db(phone):
     # for m in lsm:
     #     print(m)
     # print(len(list(cursor)))
-    print(len(list(get_last_sent_messages(db))))
-    print(len(list(get_last_read_messages(db))))
+    # print(len(list(get_last_sent_messages(db))))
+    # print(len(list(get_last_read_messages(db))))
+
+    jits = get_active_jits(db)
+    print(jits)
     # print(cursor[0])
     # print(cursor[1])
     # print(cursor[2])

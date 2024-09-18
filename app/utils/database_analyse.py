@@ -111,29 +111,25 @@ def get_last_read_messages(db):
     return db[DB_READ].find(get_last_messages_query())
 
 
-def get_active_jits(db):
+def get_active_jids(db):
 
     sent = get_last_sent_messages(db)
     read = get_last_read_messages(db)
 
-    active_jits = []
+    active_jids = []
 
     for m in sent:
         print(m)
-        jit = m["jit"]
-        if jit not in active_jits:
-            active_jits.append(jit)
+        jid = m["jid"]
+        if jid not in active_jids:
+            active_jids.append(jid)
 
     for m in read:
-        jit = m["jit"]
-        if jit not in active_jits:
-            active_jits.append(jit)
+        jid = m["jid"]
+        if jid not in active_jids:
+            active_jids.append(jid)
 
-    return active_jits
-
-    # upd.update({
-    #     sent["jid"]:
-    # })
+    return active_jids
 
 
 def print_coll_counts(db):
@@ -157,8 +153,8 @@ def analyse_db(phone, count_cols=True):
 
     # print(len(list(get_last_read_messages(db))))
 
-    jits = get_active_jits(db)
-    print(jits)
+    jids = get_active_jids(db)
+    print(jids)
     # print(cursor[0])
     # print(cursor[1])
     # print(cursor[2])

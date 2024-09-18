@@ -100,9 +100,7 @@ def analyse_db(phone):
     # contacts analytic
     c = db[DB_CONT]
     cursor = c.find()
-    for contact in c:
-        print(contact)
-    # print(c[0])
+    print(cursor[0])
 
     print("-" * 40)
 

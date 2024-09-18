@@ -17,7 +17,7 @@ def get_db_phones():
     for db_name in databases:
         if db_name in LOCAL_DBS:
             continue
-        print(f"DB {i}")
+        print(f"DB {db_name}")
     ...
 
 

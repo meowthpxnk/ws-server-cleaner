@@ -6,8 +6,9 @@ DB_NAME = "WA_MD_{phone}_1"
 def analyse_db(phone):
     cl = MongoClient()
     db_name = DB_NAME.format(phone=phone)
-    # db = cl[db]
-    # print(db_name)
+    db = cl[db]
+
+    print(db.__dir__())
 
 
 if __name__ == "__main__":

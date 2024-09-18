@@ -48,7 +48,7 @@ def analyse_db(phone):
     db_name = DB_NAME.format(phone=phone)
     db = cl[db_name]
 
-    delta = datetime.now() - timedelta(hours=2)
+    delta = datetime.now() - timedelta(days=1)
     delta = int(delta.timestamp())
 
     # print("-" * 40)
@@ -80,14 +80,18 @@ def analyse_db(phone):
         }
 
         q = coll.find(query)
-        print(len(list(q)))
+        # print(len(list(q)))
 
-        for rec in coll.find(query):
+        timestamps = []
+
+        for rec in q:
             ts = rec["messageTimestamp"]
             # print(rec)
             ts = Timestapm(ts)
-            print(ts)
+            timestamps.append(ts)
+            # print(ts)
             # break
+        print(f"Count timestamps: {len(timestamps)}")
 
     print("-" * 40)
 

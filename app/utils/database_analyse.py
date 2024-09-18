@@ -48,20 +48,28 @@ def analyse_db(phone):
     db_name = DB_NAME.format(phone=phone)
     db = cl[db_name]
 
-    for coll in DB_COLLECTIONS:
+    print("-" * 40)
+    print(f"ANALYSE FOR DB {db_name}")
+
+    for coll_name in DB_COLLECTIONS:
+
+        coll = db[coll_name]
+
+        records = coll.find()
+        print(f"Coll - {coll_name} count {len(list(records))}")
 
         if coll is not DB_IN:
             continue
-        coll = db[coll]
+
         # print(coll.__dir__())
-        records = coll.find()
-        # print(len(list(records)))
 
         for rec in records:
             ts = rec["messageTimestamp"]
             ts = Timestapm(ts)
             print(ts)
             # print()
+
+    print("-" * 40)
 
     # print(db.list_collection_names())
 

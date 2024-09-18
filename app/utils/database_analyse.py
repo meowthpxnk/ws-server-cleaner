@@ -154,7 +154,7 @@ def analyse_db(phone, count_cols=True):
     if count_cols:
         print_coll_counts(db)
 
-    print(len(list(get_last_read_messages(db))))
+    # print(len(list(get_last_read_messages(db))))
 
     jid_list = get_active_jid_list(db)
 
@@ -184,4 +184,4 @@ def analyse_db(phone, count_cols=True):
 if __name__ == "__main__":
     phone = "994512306000"
     # clear_db(phone)
-    analyse_db(phone, count_cols=False)
+    analyse_db(phone, count_cols=True)

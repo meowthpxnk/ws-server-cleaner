@@ -34,7 +34,7 @@ def analyse_db(phone):
 
         records = coll.find()
 
-        print(len(records))
+        print(len(list(records)))
 
     # print(db.list_collection_names())
 

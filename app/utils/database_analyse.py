@@ -65,32 +65,19 @@ def analyse_db(phone):
 
         # print(coll.__dir__())
 
-        pipeline = [
-            {
-                "$match": {
-                    "$expr": {
-                        "$or": [
-                            # Условие для простого timestamp
-                            {"$gte": ["$messageTimestamp", delta]},
-                            # Условие для вложенного словаря
-                            {
-                                "$and": [
-                                    {"$gte": ["$messageTimestamp.low", delta]},
-                                    {
-                                        "$eq": [
-                                            "$messageTimestamp.unsigned",
-                                            True,
-                                        ]
-                                    },
-                                ]
-                            },
-                        ]
-                    }
-                }
-            }
-        ]
+        query = {
+            "$or": [
+                {
+                    "messageTimestamp": {"$gte": delta}
+                },  # Фильтрация по timestamp
+                {
+                    "messageTimestamp.low": {"$gte": delta},
+                    "messageTimestamp.unsigned": True,
+                },  # Фильтрация по словарю
+            ]
+        }
 
-        for rec in coll.aggregate(pipeline):
+        for rec in coll.find(query):
             ts = rec["messageTimestamp"]
             print(rec)
             ts = Timestapm(ts)

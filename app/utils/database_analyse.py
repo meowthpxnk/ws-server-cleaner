@@ -43,16 +43,49 @@ class Timestapm:
         return f"<Timestamp: dt={self.dt}>"
 
 
-def analyse_db(phone):
+def get_delta_timestamp():
+    delta = datetime.now() - timedelta(days=1)
+    return int(delta.timestamp())
+
+
+def get_in_messages_collection(db):
+    return db[DB_IN]
+
+
+def get_query():
+    delta = get_delta_timestamp()
+    query = {
+        "$or": [
+            {"messageTimestamp": {"$lt": delta}},  # Фильтрация по timestamp
+            {
+                "messageTimestamp.low": {"$lt": delta},
+            },  # Фильтрация по словарю
+        ]
+    }
+    return query
+
+
+def get_db(phone):
     cl = MongoClient()
     db_name = DB_NAME.format(phone=phone)
     db = cl[db_name]
+    return db
 
-    delta = datetime.now() - timedelta(days=1)
-    delta = int(delta.timestamp())
 
-    # print("-" * 40)
-    print(f"ANALYSE FOR DB {db_name}")
+def clear_db(phone):
+    db = get_db(phone)
+    in_messages = get_in_messages_collection(db)
+
+    print(len(list(in_messages.find)))
+
+
+def analyse_db(phone):
+    db = get_db(phone)
+
+    print(f"Analyse database for phone: {phone}")
+
+    # delta = get_delta_timestamp()
+    # print(f"Delta: {delta}")
 
     for coll_name in DB_COLLECTIONS:
 
@@ -61,42 +94,31 @@ def analyse_db(phone):
         records = coll.find()
         print(f"Coll - {coll_name} count {len(list(records))}")
 
-        if coll_name is not DB_IN:
-            continue
+        # if coll_name is not DB_IN:
+        #     continue
 
         # print(coll.__dir__())
 
-        print(f"Delta: {delta}")
-
-        query = {
-            "$or": [
-                {
-                    "messageTimestamp": {"$lt": delta}
-                },  # Фильтрация по timestamp
-                {
-                    "messageTimestamp.low": {"$lt": delta},
-                },  # Фильтрация по словарю
-            ]
-        }
-
-        q = coll.find(query)
+        # q = coll.find(query)
         # print(len(list(q)))
 
-        timestamps = []
+    #     timestamps = []
 
-        for rec in q:
-            ts = rec["messageTimestamp"]
-            # print(rec)
-            ts = Timestapm(ts)
-            timestamps.append(ts)
-            print(ts)
-            # break
-        print(f"Count timestamps: {len(timestamps)}")
+    #     for rec in q:
+    #         ts = rec["messageTimestamp"]
+    #         # print(rec)
+    #         ts = Timestapm(ts)
+    #         timestamps.append(ts)
+    #         print(ts)
+    #         # break
+    #     print(f"Count timestamps: {len(timestamps)}")
 
-    print("-" * 40)
+    # print("-" * 40)
 
     # print(db.list_collection_names())
 
 
 if __name__ == "__main__":
     analyse_db("79014355936")
+
+    clear_db("79014355936")

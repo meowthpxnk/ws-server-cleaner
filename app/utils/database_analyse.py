@@ -99,7 +99,7 @@ def clear_db(phone):
 
 
 def get_last_messages_query():
-    delta = get_delta_timestamp_days(14, type_dt=True)
+    delta = get_delta_timestamp_days(1, type_dt=True)
     return {"updated": {"$gte": delta}}
 
 
@@ -131,8 +131,12 @@ def analyse_db(phone):
     # send messages analytic
     c = db[DB_SEND]
     cursor = c.find()
-    print(len(list(cursor)))
-    print(len(list(get_last_sent_messages(db))))
+
+    lsm = get_last_sent_messages(db)
+    for m in lsm:
+        print(m)
+    # print(len(list(cursor)))
+    # print(len(list(get_last_sent_messages(db))))
     # print(cursor[0])
     # print(cursor[1])
     # print(cursor[2])

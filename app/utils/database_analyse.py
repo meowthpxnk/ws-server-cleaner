@@ -48,7 +48,7 @@ def analyse_db(phone):
     db_name = DB_NAME.format(phone=phone)
     db = cl[db_name]
 
-    print("-" * 40)
+    # print("-" * 40)
     print(f"ANALYSE FOR DB {db_name}")
 
     for coll_name in DB_COLLECTIONS:

@@ -1,5 +1,6 @@
 from app.utils.list_processes import get_processes, Process
 from app.utils.devices_settings import get_devices_settings, Settings
+from app.utils.database_analyse import analyse_db
 
 
 class Device:
@@ -34,3 +35,4 @@ def analyse_devices():
 
     for device in devices:
         print(device)
+        analyse_db(device.settings.phone)

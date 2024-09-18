@@ -13,7 +13,7 @@ class Device:
 
 def analyse_devices():
     processes_list = get_processes()
-    print(processes_list)
+    print(f"Count processes: {len(processes_list)}")
     settings_list = get_devices_settings()
     # print(processes)
     # print(len(processes))
@@ -35,5 +35,6 @@ def analyse_devices():
         devices.append(device)
 
     for device in devices:
-        print(device)
-        analyse_db(device.settings.phone)
+        ...
+        # print(device)
+        # analyse_db(device.settings.phone)

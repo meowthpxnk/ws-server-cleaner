@@ -111,7 +111,7 @@ def get_last_read_messages(db):
 def analyse_db(phone):
     db = get_db(phone)
 
-    print(f"-" * 20 + " Analyse db phone: {phone}" + "-" * 20)
+    print(f"-" * 20 + f" Analyse db phone: {phone}" + "-" * 20)
 
     # print(f"Analyse database for phone: {phone}")
 
@@ -128,7 +128,7 @@ def analyse_db(phone):
     # send messages analytic
     c = db[DB_SEND]
     cursor = c.find()
-    print(len(list(cursor.find())))
+    print(len(list(cursor)))
     print(len(list(get_last_sent_messages)))
     # print(cursor[0])
     # print(cursor[1])

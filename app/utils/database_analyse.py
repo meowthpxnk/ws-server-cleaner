@@ -135,32 +135,25 @@ def get_active_jits(db):
     # })
 
 
-def analyse_db(phone):
-    db = get_db(phone)
-
-    print(f"-" * 20 + f" Analyse db phone: {phone}" + "-" * 20)
-
-    # print(f"Analyse database for phone: {phone}")
-
-    print("-" * 40)
+def print_coll_counts(db):
+    print("-" * 20)
     for coll_name in DB_COLLECTIONS:
 
         coll = db[coll_name]
 
         records = coll.find()
         print(f"Coll - {coll_name} count {len(list(records))}")
+    print("-" * 20)
 
-    print()
 
-    # send messages analytic
-    c = db[DB_SEND]
-    cursor = c.find()
+def analyse_db(phone, count_cols=True):
+    db = get_db(phone)
 
-    # lsm = get_last_sent_messages(db)
-    # for m in lsm:
-    #     print(m)
-    # print(len(list(cursor)))
-    # print(len(list(get_last_sent_messages(db))))
+    print(f"-" * 20 + f" Analyse db phone: {phone}" + "-" * 20)
+
+    if count_cols:
+        print_coll_counts(db)
+
     # print(len(list(get_last_read_messages(db))))
 
     jits = get_active_jits(db)
@@ -184,4 +177,4 @@ def analyse_db(phone):
 if __name__ == "__main__":
     phone = "994512306000"
     # clear_db(phone)
-    analyse_db(phone)
+    analyse_db(phone, count_cols=False)

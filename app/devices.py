@@ -31,5 +31,6 @@ def analyse_devices():
         device.process = process
         device.settings = settings_prep.get(process.port)
         devices.append(device)
+        print(device)
 
-    print(devices)
+    # print(devices)

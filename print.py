@@ -1,6 +1,6 @@
 from app.devices import analyse_devices
-from app.db import analyse_db
+from app.db import analyse_dbs
 
 # analyse_devices()
 
-analyse_db()
+analyse_dbs()

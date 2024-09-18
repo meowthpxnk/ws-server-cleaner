@@ -154,11 +154,15 @@ def analyse_db(phone, count_cols=True):
     if count_cols:
         print_coll_counts(db)
 
-    # print(len(list(get_last_read_messages(db))))
+    print(len(list(get_last_read_messages(db))))
 
     jid_list = get_active_jid_list(db)
 
     c = db[DB_READ].find(get_jids_for_delete_query(jid_list))
+    print(len(list(c)))
+    c = db[DB_CONT].find(get_jids_for_delete_query(jid_list))
+    print(len(list(c)))
+    c = db[DB_SEND].find(get_jids_for_delete_query(jid_list))
     print(len(list(c)))
     # print(len(jid_list))
     # print(cursor[0])

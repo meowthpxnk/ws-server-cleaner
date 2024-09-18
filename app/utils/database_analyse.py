@@ -77,18 +77,13 @@ def clear_db(phone):
     in_messages = get_in_messages_collection(db)
     query = get_query()
 
-    # in_messages.delete_many(query)
-
-    # print(len(list(in_messages.find(query))))
+    in_messages.delete_many(query)
 
 
 def analyse_db(phone):
     db = get_db(phone)
 
     print(f"Analyse database for phone: {phone}")
-
-    # delta = get_delta_timestamp()
-    # print(f"Delta: {delta}")
 
     for coll_name in DB_COLLECTIONS:
 
@@ -97,31 +92,9 @@ def analyse_db(phone):
         records = coll.find()
         print(f"Coll - {coll_name} count {len(list(records))}")
 
-        # if coll_name is not DB_IN:
-        #     continue
-
-        # print(coll.__dir__())
-
-        # q = coll.find(query)
-        # print(len(list(q)))
-
-    #     timestamps = []
-
-    #     for rec in q:
-    #         ts = rec["messageTimestamp"]
-    #         # print(rec)
-    #         ts = Timestapm(ts)
-    #         timestamps.append(ts)
-    #         print(ts)
-    #         # break
-    #     print(f"Count timestamps: {len(timestamps)}")
-
-    # print("-" * 40)
-
-    # print(db.list_collection_names())
-
 
 if __name__ == "__main__":
-    analyse_db("79014355936")
+    phone = "79251396383"
+    analyse_db(phone)
 
-    clear_db("79014355936")
+    clear_db(phone)

@@ -27,7 +27,8 @@ DB_COLLECTIONS = [
 class Contact:
     jid: str
 
-    sent_updated: datetime
+    # sent_updated: datetime
+    # read_updated: datetime
 
     def __repr__(self):
         return f"<Contact: jid={self.jid}>"
@@ -110,6 +111,9 @@ def analyse_db(phone):
     c = db[DB_READ]
     cursor = c.find()
     print(cursor[0])
+    print(cursor[1])
+    print(cursor[2])
+    print(cursor[3])
 
     print("-" * 40)
 

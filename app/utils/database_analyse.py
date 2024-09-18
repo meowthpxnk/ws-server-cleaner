@@ -24,6 +24,13 @@ DB_COLLECTIONS = [
 ]
 
 
+class Contact:
+    jid: str
+
+    def __repr__(self):
+        return f"<Contact: jid={self.jid}>"
+
+
 class Timestapm:
     dt: datetime
 
@@ -98,7 +105,7 @@ def analyse_db(phone):
     print()
 
     # contacts analytic
-    c = db[DB_CONT]
+    c = db[DB_SEND]
     cursor = c.find()
     print(cursor[0]["updated"])
 

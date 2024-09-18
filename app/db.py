@@ -15,9 +15,12 @@ def drop_inactive_dbs():
     cl = MongoClient()
     databases = cl.list_database_names()
 
-    for db in databases:
-        phone = get_phone_from_db_name(db)
+    for db_name in databases:
+        phone = get_phone_from_db_name(db_name)
         analyse = analyse_db(phone, cl=cl)
+
+        if analyse.is_empty:
+            cl[db_name].__dir__()
         print(analyse)
 
 

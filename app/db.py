@@ -34,8 +34,7 @@ def clear_all_dbs():
         if db_name in LOCAL_DBS:
             continue
         phone = get_phone_from_db_name(db_name)
-        print(phone)
-        # clear_db(phone)
+        clear_db(phone)
 
 
 def analyse_dbs():
